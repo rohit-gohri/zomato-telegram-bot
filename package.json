@@ -1,0 +1,50 @@
+{
+  "name": "telegram-bot-test",
+  "version": "0.1.0",
+  "description": "Zomato telegram bot",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "yarn build && node dist/index.js",
+    "watch": "yarn build -w",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rohit-smpx/telegram-bot-test.git"
+  },
+  "keywords": [
+    "telegram",
+    "zomato",
+    "bot",
+    "search"
+  ],
+  "author": "Rohit Gohri",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/rohit-smpx/telegram-bot-test/issues"
+  },
+  "homepage": "https://github.com/rohit-smpx/telegram-bot-test#readme",
+  "dependencies": {
+    "@smpx/oak": "^1.2.7",
+    "lodash": "^4.17.11",
+    "sm-utils": "^2.17.5",
+    "telegraf": "^3.26.0"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.120",
+    "@types/node": "^10.12.18",
+    "@typescript-eslint/eslint-plugin": "^1.1.0",
+    "@typescript-eslint/parser": "^1.1.0",
+    "eslint": "^5.12.1",
+    "jest": "^24.0.0"
+  },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "plugins": ["@typescript-eslint"],
+    "extends": "plugin:@typescript-eslint/recommended"
+  }
+}
