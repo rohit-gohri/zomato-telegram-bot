@@ -1,6 +1,6 @@
 import {cfg as CFG} from 'sm-utils';
 import {Oak as OAK} from '@smpx/oak';
-import * as lodash from 'lodash';
+import lodash from 'lodash';
 
 declare global {
 	namespace NodeJS {

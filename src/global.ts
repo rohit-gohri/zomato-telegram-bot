@@ -1,7 +1,7 @@
 import {hostname} from 'os';
 import {cfg} from 'sm-utils';
 import {Oak} from '@smpx/oak';
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 const {version} = require('../package.json');
 
