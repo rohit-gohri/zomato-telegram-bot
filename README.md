@@ -36,6 +36,14 @@ The format should be :
 Get Zomato API token at: https://developers.zomato.com/api
 Generate Telegram bot token with @botfather bot on telegram: https://telegram.me/botfather
 
+## Previews:
+
+Search:
+![search preview image](./docs/search_preview.jpg)
+
+Message:
+![message preview image](./docs/message_preview.jpg)
+
 
 ### API Documentation
 
