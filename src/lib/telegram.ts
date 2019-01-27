@@ -1,4 +1,5 @@
 import Telegraf from 'telegraf';
+import { InlineQueryResultVenue } from 'telegraf/typings/telegram-types';
 import d from 'sm-utils/d';
 
 import {
@@ -6,7 +7,10 @@ import {
 	getTopRestaurants,
 	getNearbyRestaurantsAndLocation,
 	searchRestaurants,
-	convertToFloat
+	convertToFloat,
+	convertRatingToStars,
+	getRestaurantUrl,
+	getMapsUrl,
 } from '.';
 
 const bot = new Telegraf(cfg('telegram.token'));
@@ -61,12 +65,22 @@ bot.use(async (ctx, next) => {
 bot.on('inline_query', async (ctx) => {
 	if (!ctx.update.inline_query) return;
 	const query = ctx.update.inline_query;
+	const offset = Number.parseInt(query.offset) || 0;
 	const restaurants = await getRestaurants(query);
-	const result = restaurants.map((r) => {
+
+	const result: InlineQueryResultVenue[] = restaurants.slice(offset).map((r):InlineQueryResultVenue => {
 		const restaurant = r.restaurant;
 		return {
+			input_message_content:{
+				message_text:
+					`Find this restaurant on Zomato:\n` +
+					`${restaurant.name}, ${restaurant.location.locality}\n` +
+					`${getRestaurantUrl(r)}\n` +
+					`Rating: ${convertRatingToStars(restaurant.user_rating.aggregate_rating)} (${restaurant.user_rating.aggregate_rating}/5)\n` +
+					`Location: ${getMapsUrl(restaurant.location)}`,
+			},
 			type: 'venue',
-			id: restaurant.id,
+			id: restaurant.id.toString(),
 			latitude: convertToFloat(restaurant.location.latitude),
 			longitude: convertToFloat(restaurant.location.longitude),
 			title: restaurant.name,
@@ -75,7 +89,7 @@ bot.on('inline_query', async (ctx) => {
 		};
 	});
 
-	await ctx.answerInlineQuery(result);
+	await ctx.answerInlineQuery(result.slice(0, 50), {next_offset: result.length > 50 ? String(offset + 50) : ''});
 });
 
 export default init;

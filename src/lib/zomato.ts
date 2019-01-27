@@ -31,8 +31,8 @@ namespace Zomato {
 			  locality: string;
 			  city: string;
 			  city_id: number;
-			  latitude: number | string;
-			  longitude: number | string;
+			  latitude: string;
+			  longitude: string;
 			  zipcode: number;
 			  country_id: number;
 			};
@@ -137,7 +137,7 @@ export async function getNearbyRestaurantsAndLocation(latitude: number, longitud
 		})
 }
 
-export async function searchRestaurants(q: string, location?: Zomato.location) {
+export async function searchRestaurants(q: string, location?: Zomato.location): Promise<Zomato.restaurant[]> {
 	const url = new URL(`${requestUrl}/search`);
 	const params: { [key: string]: string | string[] | undefined } = {q};
 
@@ -156,4 +156,8 @@ export async function searchRestaurants(q: string, location?: Zomato.location) {
 		if (!body) return [];
 		return body.restaurants;
 	})
+}
+
+export function getRestaurantUrl(restaurant: Zomato.restaurant) {
+	return `http://zoma.to/r/${restaurant.restaurant.id}`;
 }
