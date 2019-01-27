@@ -136,3 +136,24 @@ export async function getNearbyRestaurantsAndLocation(latitude: number, longitud
 			};
 		})
 }
+
+export async function searchRestaurants(q: string, location?: Zomato.location) {
+	const url = new URL(`${requestUrl}/search`);
+	const params: { [key: string]: string | string[] | undefined } = {q};
+
+	if (location) {
+		params.entity_id = location.entity_id.toString();
+		params.entity_type = location.entity_type;
+	}
+	url.search = new URLSearchParams(params).toString();
+
+	return new Connect()
+	.get()
+	.url(url.toString())
+	.header('user-key', userKey)
+	.fetch().then((response) => {
+		const body: any = Str.tryParseJson(response.body);
+		if (!body) return [];
+		return body.restaurants;
+	})
+}
