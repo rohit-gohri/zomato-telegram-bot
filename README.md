@@ -39,7 +39,6 @@ Generate Telegram bot token with @botfather bot on telegram: https://telegram.me
 
 ### API Documentation
 
-Zomato: https://developers.zomato.com/documentation
-Telegram: https://core.telegram.org/bots/api
-
-Telegraf's inline mode docs: https://core.telegram.org/bots/api#inline-mode 
+- Zomato: https://developers.zomato.com/documentation
+- Telegram: https://core.telegram.org/bots/api
+- Telegraf's inline mode docs: https://core.telegram.org/bots/api#inline-mode 
