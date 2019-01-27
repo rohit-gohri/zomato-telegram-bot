@@ -93,11 +93,15 @@ bot.on('inline_query', async (ctx) => {
 		};
 	});
 
-	await ctx.answerInlineQuery(result.slice(0, 50), {
+	return ctx.answerInlineQuery(result.slice(0, 50), {
 		next_offset: result.length > 50 ? String(offset + 50) : '',
 		cache_time: 0,
 		is_personal: true,
 	});
 });
+
+bot.on('message', async (ctx) => {
+	return ctx.reply(`This is an inline bot, please invoke it by starting your message with: @${bot.options.username}`);
+})
 
 export default init;
