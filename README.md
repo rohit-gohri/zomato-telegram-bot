@@ -9,6 +9,13 @@ yarn
 yarn start
 ```
 
+OR
+
+```sh
+npm install
+npm run start
+```
+
 ## config
 
 Add a `config.json` to a folder called `private` in the root directory.
