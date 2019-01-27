@@ -6,12 +6,13 @@ export function convertToFloat(num: string | number) {
 }
 
 export function convertRatingToStars(rating: number) {
+	const originalRating = rating;
 	let stars = '';
 	while(rating > 0.5) {
 		stars += '🌟';
 		rating--;
 	}
-	return stars;
+	return `${stars} (${originalRating}/5)`;
 }
 
 export function getMapsUrl(location: {latitude: string | number, longitude: string | number}) {

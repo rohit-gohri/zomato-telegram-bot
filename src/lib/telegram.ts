@@ -72,12 +72,16 @@ bot.on('inline_query', async (ctx) => {
 		const restaurant = r.restaurant;
 		return {
 			input_message_content:{
+				parse_mode: 'markdown',
 				message_text:
 					`Find this restaurant on Zomato:\n` +
-					`${restaurant.name}, ${restaurant.location.locality}\n` +
-					`${getRestaurantUrl(r)}\n` +
-					`Rating: ${convertRatingToStars(restaurant.user_rating.aggregate_rating)} (${restaurant.user_rating.aggregate_rating}/5)\n` +
-					`Location: ${getMapsUrl(restaurant.location)}`,
+					`[${restaurant.name}, ${restaurant.location.locality}]` +
+					`(${getRestaurantUrl(r)})\n\n` +
+					`*Location:* [Maps Url](${getMapsUrl(restaurant.location)})\n` +
+					`*Rating:* ${convertRatingToStars(restaurant.user_rating.aggregate_rating)}\n` +
+					`*Cost For Two:* ${restaurant.currency}${restaurant.average_cost_for_two}\n` +
+					`*Cuisines:* ${restaurant.cuisines}\n`,
+				disable_web_page_preview: true,
 			},
 			type: 'venue',
 			id: restaurant.id.toString(),
@@ -89,7 +93,11 @@ bot.on('inline_query', async (ctx) => {
 		};
 	});
 
-	await ctx.answerInlineQuery(result.slice(0, 50), {next_offset: result.length > 50 ? String(offset + 50) : ''});
+	await ctx.answerInlineQuery(result.slice(0, 50), {
+		next_offset: result.length > 50 ? String(offset + 50) : '',
+		cache_time: 0,
+		is_personal: true,
+	});
 });
 
 export default init;
