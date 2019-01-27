@@ -24,7 +24,6 @@ async function getRestaurants(query) {
 
 	const isNearQuery = searchQuery.includes('near ');
 	const nearSearchTerm = isNearQuery ? searchQuery.slice(searchQuery.indexOf('near ') + 5) : '';
-	d(isNearQuery, nearSearchTerm, searchQuery);
 
 	if (isNearQuery && nearSearchTerm) {
 		location = await getLocation(nearSearchTerm, query.location);
