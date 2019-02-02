@@ -41,10 +41,10 @@ module.exports = {
 			host: 'boring.download',
 			ssh_options: ['ForwardAgent=yes'],
 			ref: 'origin/master',
-			repo: 'git@github.com:rohit-smpx/zomato-telegram-bot.git',
+			repo: 'https://github.com/rohit-smpx/zomato-telegram-bot.git',
 			path: '/home/rohit/food_bot',
 			get 'post-deploy'() {
-				return 'yarn install && ' +
+				return 'yarn install --production=false && ' +
 					'yarn build && ' +
 					'pm2 reload ecosystem.config.js --env production';
 			},
