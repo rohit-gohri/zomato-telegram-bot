@@ -89,13 +89,13 @@ export async function getLocation(query: string, options?: {latitude: number, lo
 
 	return new Connect()
 		.get()
-		.url(url.toString())
+		.url(encodeURI(url.toString()))
 		.header('user-key', userKey)
 		.fetch().then((response) => {
 			const body: any = Str.tryParseJson(response.body);
 			if (!body) return null;
 			return body.location_suggestions[0];
-		})
+		});
 }
 
 export async function getTopRestaurants(location: Zomato.location): Promise<Zomato.restaurant[]> {
@@ -106,14 +106,15 @@ export async function getTopRestaurants(location: Zomato.location): Promise<Zoma
 	}).toString();
 
 	return new Connect()
-	.get()
-	.url(url.toString())
-	.header('user-key', userKey)
-	.fetch().then((response) => {
-		const body: any = Str.tryParseJson(response.body);
-		if (!body) return [];
-		return body.best_rated_restaurant;
-	})
+		.get()
+		.url(encodeURI(url.toString()))
+		.header('user-key', userKey)
+		.fetch()
+		.then((response) => {
+			const body: any = Str.tryParseJson(response.body);
+			if (!body) return [];
+			return body.best_rated_restaurant;
+		});
 }
 
 export async function getNearbyRestaurantsAndLocation(latitude: number, longitude: number): Promise<{restaurants: Zomato.restaurant[], location: Zomato.location}> {
@@ -125,7 +126,7 @@ export async function getNearbyRestaurantsAndLocation(latitude: number, longitud
 
 	return new Connect()
 		.get()
-		.url(url.toString())
+		.url(encodeURI(url.toString()))
 		.header('user-key', userKey)
 		.fetch().then((response) => {
 			const body: any = Str.tryParseJson(response.body);
@@ -134,7 +135,7 @@ export async function getNearbyRestaurantsAndLocation(latitude: number, longitud
 				restaurants: body.nearby_restaurants,
 				location: body.location,
 			};
-		})
+		});
 }
 
 export async function searchRestaurants(q: string, location?: Zomato.location): Promise<Zomato.restaurant[]> {
@@ -148,14 +149,14 @@ export async function searchRestaurants(q: string, location?: Zomato.location): 
 	url.search = new URLSearchParams(params).toString();
 
 	return new Connect()
-	.get()
-	.url(url.toString())
-	.header('user-key', userKey)
-	.fetch().then((response) => {
-		const body: any = Str.tryParseJson(response.body);
-		if (!body) return [];
-		return body.restaurants;
-	})
+		.get()
+		.url(encodeURI(url.toString()))
+		.header('user-key', userKey)
+		.fetch().then((response) => {
+			const body: any = Str.tryParseJson(response.body);
+			if (!body) return [];
+			return body.restaurants;
+		});
 }
 
 export function getRestaurantUrl(restaurant: Zomato.restaurant) {
