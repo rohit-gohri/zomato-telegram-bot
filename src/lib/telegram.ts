@@ -95,8 +95,8 @@ bot.on('inline_query', async (ctx) => {
 
 	return ctx.answerInlineQuery(result.slice(0, 50), {
 		next_offset: result.length > 50 ? String(offset + 50) : '',
-		cache_time: 0,
-		is_personal: true,
+		// cache_time: 0,
+		// is_personal: true,
 	});
 });
 
