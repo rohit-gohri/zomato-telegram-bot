@@ -42,7 +42,7 @@ module.exports = {
 			ssh_options: ['ForwardAgent=yes'],
 			ref: 'origin/master',
 			repo: 'git@github.com:rohit-smpx/zomato-telegram-bot.git',
-			path: '~/food_bot',
+			path: '/home/rohit/food_bot',
 			get 'post-deploy'() {
 				return 'yarn install && ' +
 					'yarn build && ' +
