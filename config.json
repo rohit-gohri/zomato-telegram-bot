@@ -4,5 +4,6 @@
 	},
 	"telegram": {
 		"token": "xxxx"
-	}
+	},
+	"trackingId": "UA-xxxxxxxxx-x"
 }
