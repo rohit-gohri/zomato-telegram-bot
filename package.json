@@ -29,11 +29,13 @@
     "@smpx/oak": "^1.2.7",
     "lodash": "^4.17.11",
     "sm-utils": "^2.17.5",
-    "telegraf": "^3.26.0"
+    "telegraf": "^3.26.0",
+    "universal-analytics": "^0.4.20"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.120",
     "@types/node": "^10.12.18",
+    "@types/universal-analytics": "^0.4.2",
     "@typescript-eslint/eslint-plugin": "^1.1.0",
     "@typescript-eslint/parser": "^1.1.0",
     "eslint": "^5.12.1",

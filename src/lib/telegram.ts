@@ -1,6 +1,6 @@
 import Telegraf from 'telegraf';
 import { InlineQueryResultVenue } from 'telegraf/typings/telegram-types';
-import d from 'sm-utils/d';
+import ua from 'universal-analytics';
 
 import {
 	getLocation,
@@ -93,6 +93,13 @@ bot.on('inline_query', async (ctx) => {
 		};
 	});
 
+	const visitor = ua(cfg('trackingId'), {cid: String(ctx.update.inline_query.from.id), strictCidFormat: false})
+	visitor.event({
+		ec: 'inline query',
+		ea: 'search',
+		el: ctx.update.inline_query.query
+	}).send();
+
 	return ctx.answerInlineQuery(result.slice(0, 50), {
 		next_offset: result.length > 50 ? String(offset + 50) : '',
 		// cache_time: 0,
@@ -100,7 +107,29 @@ bot.on('inline_query', async (ctx) => {
 	});
 });
 
+bot.on('chosen_inline_result', async (ctx) => {
+	if (!ctx.update.chosen_inline_result) return;
+
+	const visitor = ua(cfg('trackingId'), {cid: String(ctx.update.chosen_inline_result.from.id), strictCidFormat: false})
+	visitor.event({
+		ec: 'inline query',
+		ea: 'selected',
+		el: ctx.update.chosen_inline_result.query,
+		ev: ctx.update.chosen_inline_result.result_id
+	}).send();
+});
+
 bot.on('message', async (ctx) => {
+	if (!ctx.message || !ctx.message.from) return;
+
+	const visitor = ua(cfg('trackingId'), {cid: String(ctx.message.from.id), strictCidFormat: false})
+
+	visitor.event({
+		ec: 'message',
+		ea: 'received',
+		el: ctx.message.text,
+	}).send();
+
 	return ctx.reply(`This is an inline bot, please invoke it by starting your message with: @${bot.options.username}`);
 })
 
