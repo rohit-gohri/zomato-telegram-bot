@@ -1,6 +1,6 @@
 {
   "name": "telegram-bot-test",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Zomato telegram bot",
   "main": "dist/index.js",
   "scripts": {
