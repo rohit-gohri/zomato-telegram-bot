@@ -3,7 +3,7 @@ import {URL, URLSearchParams} from 'url';
 import {Connect, Str} from 'sm-utils';
 
 const requestUrl = 'https://developers.zomato.com/api/v2.1';
-const userKey: string = cfg('zomato.token');
+const userKey: string = cfg('zomato.token', '');
 
 namespace Zomato {
 	export interface location {
