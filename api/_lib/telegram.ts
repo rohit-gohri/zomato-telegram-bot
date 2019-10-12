@@ -26,7 +26,7 @@ async function getWebhookCallback() {
 	const botInfo = await bot.telegram.getMe();
 	bot.options.username = botInfo.username;
 	Oak.info('Server has initialized bot username.', botInfo.username);
-	return bot.webhookCallback('/');
+	return bot.webhookCallback('/api');
 }
 
 async function getRestaurants(query) {

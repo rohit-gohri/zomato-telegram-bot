@@ -10,8 +10,10 @@ if (!process.env.IS_NOW) {
   }
   
 export default async (req: NowRequest, res: NowResponse) => {
-	if (!req.method || req.method.toLowerCase()  !== 'post') {
-		res.send('ok');
+	if (!req.method) return;
+	
+	if (req.method.toLowerCase()  !== 'post') {
+		res.send(`ok ${req.method.toLowerCase()}`);
 		return;
 	}
 
