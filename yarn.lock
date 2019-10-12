@@ -286,6 +286,13 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
+"@now/node@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@now/node/-/node-1.0.1.tgz#519e137a7b0da913ee409d1613ecab8b8d0e4a8c"
+  integrity sha512-unClfFk4s7q31AyE6D+8LjQTeFRG+YKfeCCMXT+/KXIuCzCx/uqCtlP/rp9sCdxayVM93iPg9x1Ttbn3ySg7zQ==
+  dependencies:
+    "@types/node" "*"
+
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.14.0.tgz#9fb3a3cf3132328151f353de4632e01e52102bea"
