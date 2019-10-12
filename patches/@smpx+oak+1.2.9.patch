@@ -1,0 +1,51 @@
+diff --git a/node_modules/@smpx/oak/index.d.ts b/node_modules/@smpx/oak/index.d.ts
+index 34a92c6..113a0e0 100644
+--- a/node_modules/@smpx/oak/index.d.ts
++++ b/node_modules/@smpx/oak/index.d.ts
+@@ -7,26 +7,26 @@ declare module '@smpx/oak' {
+ 
+ 	type level = 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly';
+ 	
+-	class BasicLogs {
++	export class BasicLogs {
+ 		constructor(opts?: {level?: level});
+ 		log(info: plainObject): void;
+ 		static formatter(info: plainObject): any;
+ 		static filterLogs(info: plainObject, level: level): boolean;
+ 	}
+ 
+-	class ConsoleLogs extends BasicLogs {
++	export class ConsoleLogs extends BasicLogs {
+ 	}
+ 
+-	class FileLogs extends BasicLogs {
++	export class FileLogs extends BasicLogs {
+ 		constructor(opts: {level?: level, path: string, table: string, filter: boolean})
+ 		static _getStream(opts: {path: string, table: string, regenerate?: boolean}): WriteStream;
+ 	}
+ 
+-	class Oak {
++	export default class OakClass {
+ 		constructor(opts?: object | string);
+ 	
+ 		updateOptions(opts: object): void;
+-		getChild<T extends Oak>(this: T, opts?: object | string): T;
++		getChild<T extends OakClass>(this: T, opts?: object | string): T;
+ 		setTransports<T extends BasicLogs>(transports: T | T[]): void;
+ 
+ 		log(...args: any[]): void;
+@@ -87,12 +87,5 @@ declare module '@smpx/oak' {
+ 		static default: Oak;
+ 	}
+ 
+-	export default Oak;
+-
+-	export {
+-		BasicLogs,
+-		FileLogs,
+-		ConsoleLogs,
+-		Oak,
+-	}
++	export class Oak extends OakClass {}
+ }
+\ No newline at end of file

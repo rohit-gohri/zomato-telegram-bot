@@ -8,6 +8,9 @@ const {version} = require('../package.json');
 cfg.file(`${__dirname}/../config.json`, {overwrite: true, ignoreErrors: false, ignoreNotFound: false});
 cfg.file(`${__dirname}/../private/config.json`, {overwrite: false, ignoreErrors: false, ignoreNotFound: true});
 
+// @ts-ignore
+cfg.readEnv();
+
 global.cfg = cfg;
 global._ = _;
 

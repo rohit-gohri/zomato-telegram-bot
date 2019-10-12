@@ -1,0 +1,13 @@
+diff --git a/node_modules/@smpx/cfg/index.js b/node_modules/@smpx/cfg/index.js
+index b795eb0..76671bd 100644
+--- a/node_modules/@smpx/cfg/index.js
++++ b/node_modules/@smpx/cfg/index.js
+@@ -62,7 +62,7 @@ function cfg(key, defaultValue) {
+  * __ to seperate the key path
+  * @private
+  */
+-function readEnvVariables() {
++cfg.readEnv = function readEnvVariables() {
+ 	const vals = Object.keys(process.env).filter(val => val.indexOf('CFG__') === 0);
+ 	vals.forEach((val) => {
+ 		const key = val.slice(5).split('__').map(el => _.camelCase(el)).join('.');
