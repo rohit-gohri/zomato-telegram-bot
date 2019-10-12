@@ -1,0 +1,7 @@
+{
+    "env": {
+        "CFG__ZOMATO__TOKEN": "@zomato-api-token",
+        "CFG__TELEGRAM__TOKEN": "@telegram-zomato-bot-token",
+        "CFG__TRACKING_ID": "@zomato-bot-analytics-id"
+    }
+}
