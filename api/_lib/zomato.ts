@@ -1,4 +1,4 @@
-import '../global';
+import '../_global';
 import {URL, URLSearchParams} from 'url';
 import {Connect, Str} from 'sm-utils';
 

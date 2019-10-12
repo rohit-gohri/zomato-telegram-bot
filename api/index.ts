@@ -1,5 +1,5 @@
-import './global';
-import {startBot, getWebhookCallback} from './lib';
+import './_global';
+import {startBot, getWebhookCallback} from './_lib';
 
 // process.env.IS_NOW is undefined locally,
 if (!process.env.IS_NOW) {
