@@ -4,8 +4,8 @@
   "description": "Zomato telegram bot",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
-    "start": "yarn build && node dist/index.js",
+    "compile": "tsc",
+    "start": "yarn compile && node dist/index.js",
     "dev": "tsc-watch --onSuccess \"node ./dist/index.js\" --onFailure \"echo Beep! Compilation Failed\" --compiler $(which tsc)",
     "test": "jest",
     "postinstall": "patch-package"

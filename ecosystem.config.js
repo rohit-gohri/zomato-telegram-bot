@@ -45,7 +45,7 @@ module.exports = {
 			path: '/home/rohit/food_bot',
 			get 'post-deploy'() {
 				return 'yarn install --production=false && ' +
-					'yarn build && ' +
+					'yarn compile && ' +
 					'pm2 reload ecosystem.config.js --env production';
 			},
 			env: {
