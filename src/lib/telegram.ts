@@ -13,13 +13,20 @@ import {
 	getMapsUrl,
 } from '.';
 
-const bot = new Telegraf(cfg('telegram.token'));
+const bot = new Telegraf(cfg('telegram.token', ''));
 
 async function init() {
 	const botInfo = await bot.telegram.getMe();
 	bot.options.username = botInfo.username;
 	Oak.info('Server has initialized bot username.', botInfo.username);
 	bot.startPolling();
+}
+
+async function getWebhookCallback() {
+	const botInfo = await bot.telegram.getMe();
+	bot.options.username = botInfo.username;
+	Oak.info('Server has initialized bot username.', botInfo.username);
+	return bot.webhookCallback('/');
 }
 
 async function getRestaurants(query) {
@@ -93,7 +100,7 @@ bot.on('inline_query', async (ctx) => {
 		};
 	});
 
-	const visitor = ua(cfg('trackingId'), {cid: String(ctx.update.inline_query.from.id), strictCidFormat: false})
+	const visitor = ua(cfg('trackingId', ''), {cid: String(ctx.update.inline_query.from.id), strictCidFormat: false})
 	visitor.event({
 		ec: 'inline query',
 		ea: 'search',
@@ -110,7 +117,7 @@ bot.on('inline_query', async (ctx) => {
 bot.on('chosen_inline_result', async (ctx) => {
 	if (!ctx.update.chosen_inline_result) return;
 
-	const visitor = ua(cfg('trackingId'), {cid: String(ctx.update.chosen_inline_result.from.id), strictCidFormat: false})
+	const visitor = ua(cfg('trackingId', ''), {cid: String(ctx.update.chosen_inline_result.from.id), strictCidFormat: false})
 	visitor.event({
 		ec: 'inline query',
 		ea: 'selected',
@@ -122,7 +129,7 @@ bot.on('chosen_inline_result', async (ctx) => {
 bot.on('message', async (ctx) => {
 	if (!ctx.message || !ctx.message.from) return;
 
-	const visitor = ua(cfg('trackingId'), {cid: String(ctx.message.from.id), strictCidFormat: false})
+	const visitor = ua(cfg('trackingId', ''), {cid: String(ctx.message.from.id), strictCidFormat: false})
 
 	visitor.event({
 		ec: 'message',
@@ -134,3 +141,7 @@ bot.on('message', async (ctx) => {
 })
 
 export default init;
+
+export {
+	getWebhookCallback,
+};

@@ -1,6 +1,13 @@
 import './global';
-import {startBot} from './lib';
+import {startBot, getWebhookCallback} from './lib';
 
-startBot().then(() => {
-	Oak.info('Started bot');
-});
+// process.env.IS_NOW is undefined locally,
+if (!process.env.IS_NOW) {
+	startBot().then(() => {
+		Oak.info('Started bot');
+	});
+  }
+  
+export default (req, res) => {
+	return getWebhookCallback().then(cb => cb(req, res));
+};

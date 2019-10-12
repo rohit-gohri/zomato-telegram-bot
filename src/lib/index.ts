@@ -1,7 +1,8 @@
-import startBot from './telegram';
+import startBot, {getWebhookCallback} from './telegram';
 export * from './zomato';
 export * from './utils';
 
 export {
-	startBot
+	startBot,
+	getWebhookCallback,
 };
