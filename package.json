@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rohit-smpx/telegram-bot-test.git"
+    "url": "git+https://github.com/rohit-gohri/telegram-bot-test.git"
   },
   "keywords": [
     "telegram",
@@ -23,9 +23,9 @@
   "author": "Rohit Gohri",
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/rohit-smpx/telegram-bot-test/issues"
+    "url": "https://github.com/rohit-gohri/telegram-bot-test/issues"
   },
-  "homepage": "https://github.com/rohit-smpx/telegram-bot-test#readme",
+  "homepage": "https://github.com/rohit-gohri/telegram-bot-test#readme",
   "dependencies": {
     "@smpx/oak": "^1.2.7",
     "lodash": "^4.17.11",
